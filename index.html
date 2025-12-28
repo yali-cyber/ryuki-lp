@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RYUKI 行動変容プロファイリング｜戦略的思考データで人生を実装する</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- Tempus Dominus DateTimePicker CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css">
+    
     <style>
         * {
             margin: 0;
@@ -470,6 +480,135 @@
             letter-spacing: 0.05em;
         }
 
+        /* UTAGE Form Styles */
+        .utage-form-wrapper {
+            max-width: 600px;
+            margin: 60px auto 0;
+            padding: 0;
+        }
+
+        .utage-form-wrapper .card-body {
+            padding: 50px 40px;
+            background: #ffffff;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.04);
+        }
+
+        .utage-form-wrapper .form-group {
+            margin-bottom: 30px;
+        }
+
+        .utage-form-wrapper .font-weight-bold {
+            display: block;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        .utage-form-wrapper .badge-danger {
+            background: var(--accent-burgundy);
+            color: #ffffff;
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 3px;
+            margin-left: 8px;
+            font-weight: 500;
+        }
+
+        .utage-form-wrapper .form-control {
+            width: 100%;
+            padding: 15px 18px;
+            font-size: 1rem;
+            font-family: 'Noto Serif JP', serif;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-lighter);
+            transition: all 0.3s ease;
+            border-radius: 0;
+        }
+
+        .utage-form-wrapper .form-control:focus {
+            outline: none;
+            border-color: var(--accent-burgundy);
+            box-shadow: 0 0 0 3px rgba(139, 35, 50, 0.1);
+            background: #ffffff;
+        }
+
+        .utage-form-wrapper .input-group {
+            display: flex;
+        }
+
+        .utage-form-wrapper .input-group-append {
+            display: flex;
+        }
+
+        .utage-form-wrapper .input-group-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 18px;
+            background: var(--bg-light);
+            border: 1px solid var(--border-subtle);
+            border-left: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+        }
+
+        .utage-form-wrapper .input-group-text:hover {
+            background: var(--accent-gold);
+            color: #ffffff;
+        }
+
+        .utage-form-wrapper .btn-success {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--accent-burgundy) 0%, #a12e3f 100%);
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 30px rgba(139, 35, 50, 0.3);
+            margin-top: 10px;
+            border-radius: 0;
+        }
+
+        .utage-form-wrapper .btn-success:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(139, 35, 50, 0.4);
+        }
+
+        /* Dark background form (for closing section) */
+        .utage-form-dark .card-body {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .utage-form-dark .font-weight-bold {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .utage-form-dark .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        .utage-form-dark .form-control:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--accent-gold);
+        }
+
+        .utage-form-dark .input-group-text {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
         /* Profile Section */
         .profile-section {
             background: var(--bg-lighter);
@@ -619,6 +758,28 @@
                 letter-spacing: 0.01em;
             }
 
+            .utage-form-wrapper {
+                margin-top: 40px;
+            }
+
+            .utage-form-wrapper .card-body {
+                padding: 35px 25px;
+            }
+
+            .utage-form-wrapper .font-weight-bold {
+                font-size: 0.95rem;
+            }
+
+            .utage-form-wrapper .form-control {
+                padding: 13px 15px;
+                font-size: 0.95rem;
+            }
+
+            .utage-form-wrapper .btn-success {
+                padding: 18px;
+                font-size: 1rem;
+            }
+
             .solution-grid {
                 grid-template-columns: 1fr;
                 gap: 35px;
@@ -672,27 +833,30 @@
                 RYUKIは、あなたの「思考のクセ」をデータ化し、<br>
                 ビジネスと人生を「実装」するための戦略的プロファイリングです。
             </p>
-            <a href="<form action="https://utage-system.com/r/supwmAr7ZpvJ/store" method="post">
-    <div class="card-body">
-        <div class="form-group">
-            <label class="font-weight-bold" for="mail">メールアドレス <span class="badge badge-danger">必須</span></label>
-                            <input class="form-control" required="" id="mail" type="email" name="mail" value="" autocomplete="email">
-                    </div>
-                <div class="form-group">
-            <label class="font-weight-bold" for="free1">生年月日</label>
-                            <div class="form-group">
-                    <div class="input-group date datepicker" id="free1" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" name="free1" value="" data-target="#free1">
-                        <div class="input-group-append" data-target="#free1" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            
+            <!-- UTAGE Registration Form -->
+            <div class="utage-form-wrapper" style="margin-top: 50px;">
+                <form action="https://utage-system.com/r/supwmAr7ZpvJ/store" method="post">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="mail1">メールアドレス <span class="badge badge-danger">必須</span></label>
+                            <input class="form-control" required="" id="mail1" type="email" name="mail" value="" autocomplete="email" placeholder="your@email.com">
                         </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="free1_1">生年月日</label>
+                            <div class="form-group">
+                                <div class="input-group date datepicker" id="free1_1" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" name="free1" value="" data-target="#free1_1" placeholder="例：1980/01/15">
+                                    <div class="input-group-append" data-target="#free1_1" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-block btn-success btn-lg" type="submit">無料で戦略データを受け取る</button>
                     </div>
-                </div>
-                    </div>
-            <button class="btn btn-block btn-success btn-lg" type="submit">登録する</button>
-    </div>
-</form>" class="cta-button" target="_blank">無料で「私の戦略データ」を受け取る</a>
-            <p class="cta-note">※30秒で登録完了</p>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -775,28 +939,29 @@
                 「行動を変える」意思のある方のみ受け取ってください。
             </div>
         </div>
-        <div style="text-align: center; margin-top: 70px;">
-            <a href="<form action="https://utage-system.com/r/supwmAr7ZpvJ/store" method="post">
-    <div class="card-body">
-        <div class="form-group">
-            <label class="font-weight-bold" for="mail">メールアドレス <span class="badge badge-danger">必須</span></label>
-                            <input class="form-control" required="" id="mail" type="email" name="mail" value="" autocomplete="email">
+        
+        <!-- UTAGE Registration Form -->
+        <div class="utage-form-wrapper">
+            <form action="https://utage-system.com/r/supwmAr7ZpvJ/store" method="post">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="mail2">メールアドレス <span class="badge badge-danger">必須</span></label>
+                        <input class="form-control" required="" id="mail2" type="email" name="mail" value="" autocomplete="email" placeholder="your@email.com">
                     </div>
-                <div class="form-group">
-            <label class="font-weight-bold" for="free1">生年月日</label>
-                            <div class="form-group">
-                    <div class="input-group date datepicker" id="free1" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" name="free1" value="" data-target="#free1">
-                        <div class="input-group-append" data-target="#free1" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    <div class="form-group">
+                        <label class="font-weight-bold" for="free1_2">生年月日</label>
+                        <div class="form-group">
+                            <div class="input-group date datepicker" id="free1_2" data-target-input="nearest">
+                                <input type="text" class="form-control datetimepicker-input" name="free1" value="" data-target="#free1_2" placeholder="例：1980/01/15">
+                                <div class="input-group-append" data-target="#free1_2" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <button class="btn btn-block btn-success btn-lg" type="submit">無料で戦略データを受け取る</button>
                 </div>
-                    </div>
-            <button class="btn btn-block btn-success btn-lg" type="submit">登録する</button>
-    </div>
-</form>" class="cta-button" target="_blank">無料で戦略データを受け取る</a>
-            <p class="cta-note" style="color: var(--text-secondary);">※登録フォームへ移動します。<br>30秒で手続き完了</p>
+            </form>
         </div>
     </section>
 
@@ -838,27 +1003,30 @@
             <p class="closing-choice">
                 選ぶのはあなたです。
             </p>
-            <a href="<form action="https://utage-system.com/r/supwmAr7ZpvJ/store" method="post">
-    <div class="card-body">
-        <div class="form-group">
-            <label class="font-weight-bold" for="mail">メールアドレス <span class="badge badge-danger">必須</span></label>
-                            <input class="form-control" required="" id="mail" type="email" name="mail" value="" autocomplete="email">
-                    </div>
-                <div class="form-group">
-            <label class="font-weight-bold" for="free1">生年月日</label>
-                            <div class="form-group">
-                    <div class="input-group date datepicker" id="free1" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" name="free1" value="" data-target="#free1">
-                        <div class="input-group-append" data-target="#free1" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            
+            <!-- UTAGE Registration Form (Dark) -->
+            <div class="utage-form-wrapper utage-form-dark">
+                <form action="https://utage-system.com/r/supwmAr7ZpvJ/store" method="post">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="mail3">メールアドレス <span class="badge badge-danger">必須</span></label>
+                            <input class="form-control" required="" id="mail3" type="email" name="mail" value="" autocomplete="email" placeholder="your@email.com">
                         </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="free1_3">生年月日</label>
+                            <div class="form-group">
+                                <div class="input-group date datepicker" id="free1_3" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" name="free1" value="" data-target="#free1_3" placeholder="例：1980/01/15">
+                                    <div class="input-group-append" data-target="#free1_3" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-block btn-success btn-lg" type="submit">【無料】思考のブレーキを解除し、戦略データを受け取る</button>
                     </div>
-                </div>
-                    </div>
-            <button class="btn btn-block btn-success btn-lg" type="submit">登録する</button>
-    </div>
-</form>" class="cta-button" target="_blank">【無料】思考のブレーキを解除し、戦略データを受け取る</a>
-            <p class="cta-note">※登録フォームへ移動します。<br>30秒で手続き完了</p>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -891,6 +1059,41 @@
                         behavior: 'smooth',
                         block: 'start'
                     });
+                }
+            });
+        });
+    </script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ja.min.js"></script>
+    
+    <!-- Tempus Dominus DateTimePicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
+    
+    <!-- Initialize DatePickers -->
+    <script>
+        $(document).ready(function() {
+            // Initialize all datepickers
+            $('#free1_1, #free1_2, #free1_3').datetimepicker({
+                format: 'YYYY/MM/DD',
+                locale: 'ja',
+                icons: {
+                    time: 'fa fa-clock',
+                    date: 'fa fa-calendar',
+                    up: 'fa fa-chevron-up',
+                    down: 'fa fa-chevron-down',
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-calendar-check',
+                    clear: 'fa fa-trash',
+                    close: 'fa fa-times'
                 }
             });
         });
