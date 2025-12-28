@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RYU式 行動変容プロファイリング｜戦略的思考データで人生を実装する</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-navy: #1a2332;
+            --accent-burgundy: #8b2332;
+            --accent-gold: #9d8554;
+            --text-primary: #2c2c2c;
+            --text-secondary: #5a5a5a;
+            --bg-light: #f8f7f5;
+            --bg-lighter: #fefefe;
+            --border-subtle: #e5e3df;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600;700&family=Crimson+Text:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Noto Serif JP', 'Times New Roman', serif;
+            color: var(--text-primary);
+            line-height: 1.9;
+            background-color: var(--bg-lighter);
+            overflow-x: hidden;
+        }
+
+        /* Header Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a2332 0%, #2d3e50 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(157, 133, 84, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(139, 35, 50, 0.08) 0%, transparent 50%);
+            animation: subtleShift 20s ease-in-out infinite;
+        }
+
+        @keyframes subtleShift {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-accent {
+            display: inline-block;
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            color: var(--accent-gold);
+            font-weight: 300;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(157, 133, 84, 0.3);
+            padding-bottom: 8px;
+            animation: fadeIn 1.5s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            color: #ffffff;
+            font-weight: 500;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            letter-spacing: 0.05em;
+            animation: fadeInUp 1.2s ease-out 0.2s both;
+        }
+
+        .hero h2 {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            color: #ffffff;
+            font-weight: 300;
+            line-height: 1.6;
+            margin-bottom: 50px;
+            letter-spacing: 0.03em;
+            animation: fadeInUp 1.2s ease-out 0.4s both;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 2;
+            margin-bottom: 30px;
+            font-weight: 300;
+            animation: fadeInUp 1.2s ease-out 0.6s both;
+        }
+
+        .hero-lead {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 2.1;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1.2s ease-out 0.8s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 22px 60px;
+            background: linear-gradient(135deg, var(--accent-burgundy) 0%, #a12e3f 100%);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(139, 35, 50, 0.3);
+            animation: fadeInUp 1.2s ease-out 1s both;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(139, 35, 50, 0.4);
+        }
+
+        .cta-note {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            animation: fadeIn 1.5s ease-out 1.2s both;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 120px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-narrow {
+            max-width: 900px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 500;
+            margin-bottom: 60px;
+            text-align: center;
+            letter-spacing: 0.03em;
+            line-height: 1.6;
+            position: relative;
+            padding-bottom: 30px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 1px;
+            background: var(--accent-gold);
+        }
+
+        /* Pain Section */
+        .pain-section {
+            background: var(--bg-light);
+            position: relative;
+        }
+
+        .pain-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-subtle), transparent);
+        }
+
+        .pain-intro {
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+            font-weight: 400;
+            line-height: 2;
+        }
+
+        .pain-list {
+            list-style: none;
+            margin-bottom: 50px;
+        }
+
+        .pain-list li {
+            padding: 28px 0;
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 1.05rem;
+            line-height: 2;
+            position: relative;
+            padding-left: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .pain-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--accent-burgundy);
+            font-weight: 500;
+        }
+
+        .pain-list li:hover {
+            padding-left: 35px;
+            color: var(--accent-burgundy);
+        }
+
+        .pain-conclusion {
+            font-size: 1.15rem;
+            font-weight: 500;
+            line-height: 2.1;
+            padding: 40px;
+            background: rgba(139, 35, 50, 0.03);
+            border-left: 3px solid var(--accent-burgundy);
+            margin-top: 50px;
+        }
+
+        /* Solution Section */
+        .solution-section {
+            background: var(--bg-lighter);
+        }
+
+        .solution-intro {
+            font-size: 1.1rem;
+            line-height: 2;
+            margin-bottom: 70px;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 50px;
+            margin-top: 70px;
+        }
+
+        .solution-card {
+            padding: 45px 35px;
+            background: var(--bg-light);
+            border: 1px solid var(--border-subtle);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--accent-burgundy);
+            transition: height 0.4s ease;
+        }
+
+        .solution-card:hover::before {
+            height: 100%;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .solution-number {
+            display: inline-block;
+            font-size: 0.85rem;
+            color: var(--accent-gold);
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(157, 133, 84, 0.3);
+        }
+
+        .solution-card h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .solution-card p {
+            font-size: 1rem;
+            line-height: 2;
+            color: var(--text-secondary);
+        }
+
+        .solution-footer {
+            margin-top: 70px;
+            padding: 45px;
+            background: var(--primary-navy);
+            color: #ffffff;
+            text-align: center;
+            font-size: 1.15rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            line-height: 1.9;
+        }
+
+        /* Benefit Section */
+        .benefit-section {
+            background: linear-gradient(180deg, var(--bg-lighter) 0%, var(--bg-light) 100%);
+        }
+
+        .benefit-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .benefit-title-main {
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            font-weight: 500;
+            margin-bottom: 15px;
+            letter-spacing: 0.03em;
+        }
+
+        .benefit-title-sub {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            color: var(--accent-burgundy);
+            font-weight: 500;
+            margin-bottom: 40px;
+            letter-spacing: 0.05em;
+        }
+
+        .benefit-content {
+            background: #ffffff;
+            padding: 60px 50px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.04);
+        }
+
+        .benefit-list {
+            list-style: none;
+        }
+
+        .benefit-item {
+            padding: 35px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .benefit-item:last-child {
+            border-bottom: none;
+        }
+
+        .benefit-item-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: var(--primary-navy);
+            display: flex;
+            align-items: center;
+        }
+
+        .benefit-item-title::before {
+            content: '◆';
+            margin-right: 15px;
+            color: var(--accent-gold);
+            font-size: 0.8em;
+        }
+
+        .benefit-item-desc {
+            font-size: 1rem;
+            line-height: 2;
+            color: var(--text-secondary);
+            padding-left: 30px;
+        }
+
+        .benefit-note {
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(139, 35, 50, 0.03);
+            font-size: 0.95rem;
+            line-height: 2;
+            font-style: italic;
+            border-left: 3px solid var(--accent-burgundy);
+        }
+
+        /* Profile Section */
+        .profile-section {
+            background: var(--bg-lighter);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .profile-name {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 500;
+            margin-bottom: 15px;
+            letter-spacing: 0.1em;
+        }
+
+        .profile-title {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            letter-spacing: 0.08em;
+        }
+
+        .profile-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-quote {
+            font-size: 1.3rem;
+            font-weight: 500;
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px;
+            background: rgba(157, 133, 84, 0.05);
+            border-top: 2px solid var(--accent-gold);
+            border-bottom: 2px solid var(--accent-gold);
+            line-height: 2;
+            letter-spacing: 0.03em;
+        }
+
+        .profile-text {
+            font-size: 1.05rem;
+            line-height: 2.2;
+            margin-bottom: 30px;
+        }
+
+        /* Closing Section */
+        .closing-section {
+            background: linear-gradient(135deg, #1a2332 0%, #2d3e50 100%);
+            color: #ffffff;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .closing-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(157, 133, 84, 0.1) 0%, transparent 70%);
+        }
+
+        .closing-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .closing-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 500;
+            margin-bottom: 50px;
+            letter-spacing: 0.03em;
+            line-height: 1.7;
+        }
+
+        .closing-text {
+            font-size: 1.15rem;
+            line-height: 2.2;
+            margin-bottom: 35px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .closing-choice {
+            font-size: 1.1rem;
+            margin-bottom: 70px;
+            margin-top: 50px;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .section {
+                padding: 80px 25px;
+            }
+
+            .hero-content {
+                padding: 60px 25px;
+            }
+
+            .solution-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .benefit-content {
+                padding: 40px 30px;
+            }
+
+            .profile-quote {
+                padding: 30px 25px;
+                font-size: 1.15rem;
+            }
+
+            .cta-button {
+                padding: 20px 40px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-accent">STRATEGIC PROFILING</div>
+            <h1>あなたの努力不足ではありません。</h1>
+            <h2>「自身のスペック」を無視して<br>戦っているだけです。</h2>
+            <p class="hero-subtitle">
+                名前と生年月日は、一喜一憂するための「占い」ではありません。<br>
+                成果を出すための「取扱説明書（スペックデータ）」です。
+            </p>
+            <p class="hero-lead">
+                人生の後半戦。<br>
+                闇雲な努力で時間を浪費するのは、もう終わりにしませんか？<br>
+                RYU式は、あなたの「思考のクセ」をデータ化し、<br>
+                ビジネスと人生を「実装」するための戦略的プロファイリングです。
+            </p>
+            <a href="#benefit" class="cta-button">無料で「私の戦略データ」を受け取る</a>
+            <p class="cta-note">※クリックでLINE登録へ</p>
+        </div>
+    </section>
+
+    <!-- Pain Section -->
+    <section class="section pain-section fade-in-on-scroll">
+        <div class="section-narrow">
+            <h2 class="section-title">なぜ、あなたの「正論」は<br>現実に阻まれるのか？</h2>
+            <p class="pain-intro">あなたは今、こんな「見えない壁」を感じていませんか？</p>
+            <ul class="pain-list">
+                <li><strong>高額な講座で学んだノウハウ</strong>を実践しているのに、自分だけ成果が出ない。</li>
+                <li><strong>「やるべきこと」は分かっている</strong>のに、思考が複雑化して最初の一歩が踏み出せない。</li>
+                <li>SNSやブログの発信を頑張っているが、<strong>手応えよりも疲労感</strong>の方が大きい。</li>
+                <li>ふと、<strong>「このまま何者にもなれずに終わるのか」</strong>という焦燥感に襲われる。</li>
+            </ul>
+            <div class="pain-conclusion">
+                <strong>断言します。</strong><br>
+                それは、あなたの能力が低いからでも、意思が弱いからでもありません。<br>
+                あなたが、<strong>自分自身の「OS（基本ソフト）」に合わない「アプリ（やり方）」を無理やり動かそうとしているから</strong>です。
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="section solution-section fade-in-on-scroll">
+        <h2 class="section-title">名前と生年月日から導く<br>「RYU式 行動変容プロファイリング」</h2>
+        <div class="solution-intro">
+            PCにスペックやOSの種類があるように、人間の思考回路にも「型」があります。<br>
+            RYU式では、一般的に「占い」として扱われる名前と生年月日を、<strong>統計的な「固有資産データ」</strong>として扱います。<br><br>
+            曖昧な「運勢」ではなく、以下の3点をロジカルに解析します。
+        </div>
+        <div class="solution-grid">
+            <div class="solution-card">
+                <div class="solution-number">STEP 01</div>
+                <h3>思考のボトルネック特定</h3>
+                <p>あなたが無意識に踏んでしまう「ブレーキ」の正体は何なのか？（完璧主義、他人軸、分析麻痺など）</p>
+            </div>
+            <div class="solution-card">
+                <div class="solution-number">STEP 02</div>
+                <h3>勝ちパターンの抽出</h3>
+                <p>あなたが最も楽に成果を出せる「役割」と「戦い方」はどこにあるのか？</p>
+            </div>
+            <div class="solution-card">
+                <div class="solution-number">STEP 03</div>
+                <h3>タイミングの最適化</h3>
+                <p>今は「攻める時」なのか「守りを固める時」なのか？ バイオリズムに基づいた戦略策定。</p>
+            </div>
+        </div>
+        <div class="solution-footer">
+            「なんとなく」の直感や、「誰かの真似」に頼る経営は、今日で卒業です。
+        </div>
+    </section>
+
+    <!-- Benefit Section -->
+    <section id="benefit" class="section benefit-section fade-in-on-scroll">
+        <div class="benefit-header">
+            <h3 class="benefit-title-main">無料配布中：あなたのための戦略地図</h3>
+            <h2 class="benefit-title-sub">『RYU式 戦略分析レポート 1st Tuning』</h2>
+            <p style="font-size: 1.05rem; line-height: 2; margin-top: 30px;">
+                LINE登録者限定で、あなたの現状を打破するための<br class="hide-mobile">分析レポート（PDF）を作成し、お届けします。
+            </p>
+        </div>
+        <div class="benefit-content">
+            <h4 style="font-size: 1.3rem; font-weight: 500; margin-bottom: 40px; text-align: center; letter-spacing: 0.05em;">【レポートで得られるもの】</h4>
+            <ul class="benefit-list">
+                <li class="benefit-item">
+                    <div class="benefit-item-title">あなたの「思考タイプ」診断結果</div>
+                    <div class="benefit-item-desc">なぜ今まで動けなかったのか、その構造的理由を言語化。</div>
+                </li>
+                <li class="benefit-item">
+                    <div class="benefit-item-title">ビジネス・副業における「適正ポジション」</div>
+                    <div class="benefit-item-desc">リーダー型か、参謀型か、職人型か。無理のない立ち位置を特定。</div>
+                </li>
+                <li class="benefit-item">
+                    <div class="benefit-item-title">明日から踏み出すための「具体的アクション」</div>
+                    <div class="benefit-item-desc">精神論ではない、最初に取り組むべきスモールステップ。</div>
+                </li>
+            </ul>
+            <div class="benefit-note">
+                ※注意：このレポートは「読んで安心するため」のものではありません。<br>
+                「行動を変える」意思のある方のみ受け取ってください。
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 70px;">
+            <a href="https://line.me/R/ti/p/@yourlineid" class="cta-button">無料で戦略レポートを受け取る</a>
+            <p class="cta-note" style="color: var(--text-secondary);">※公式LINEへ移動します。30秒で手続き完了</p>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section class="section profile-section fade-in-on-scroll">
+        <div class="profile-header">
+            <h2 class="profile-name">RYU</h2>
+            <p class="profile-title">戦略的思考プロファイラー</p>
+        </div>
+        <div class="profile-content">
+            <div class="profile-quote">
+                「悩みすぎて動けない」は、才能の浪費です。
+            </div>
+            <p class="profile-text">
+                これまで多くの個人起業家やビジネスパーソンを見てきましたが、成果が出ない人の9割は「能力」ではなく「戦略」のミスマッチで苦しんでいます。
+                本来持っている素晴らしい「音色（資質）」が、間違った環境や思考法によって「不協和音」になっているのです。
+            </p>
+            <p class="profile-text">
+                私は、占い師ではありません。あなたを慰める言葉よりも、現状を打破する「事実」と「戦術」を提供します。
+                思考のノイズを取り除き、シンプルに行動できる自分を取り戻しましょう。
+            </p>
+        </div>
+    </section>
+
+    <!-- Closing Section -->
+    <section class="section closing-section fade-in-on-scroll">
+        <div class="closing-content">
+            <h2 class="closing-title">人生の時間は、無限ではありません。</h2>
+            <p class="closing-text">
+                迷っている間にも、時間は過ぎていきます。
+            </p>
+            <p class="closing-text">
+                「いつか変われる」と信じて何もしないまま1年を過ごすか。<br>
+                それとも、自分のデータを手に入れ、確信を持って明日を迎えるか。
+            </p>
+            <p class="closing-choice">
+                選ぶのはあなたです。
+            </p>
+            <a href="https://line.me/R/ti/p/@yourlineid" class="cta-button">【無料】思考のブレーキを解除し、戦略データを受け取る</a>
+            <p class="cta-note">※公式LINEへ移動します。30秒で手続き完了</p>
+        </div>
+    </section>
+
+    <script>
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
